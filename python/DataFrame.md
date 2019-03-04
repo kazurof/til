@@ -8,6 +8,16 @@ newDataFrame = someDataFrame.assign(new_column = someDataFrame['target_column'].
 
 `str` というメソッド経由で、`Series`の要素の文字列にアクセスできる。
 
+同様に、
+`dt` というメソッド経由で、`Series`の要素の日付型のデータにアクセスできる。
+
+例：日付の感覚が１日以下の行を取り出す。
+
+deltatimeオブジェクト同士を引き算することで、timedeltaオブジェクトが得られていて、その `days`属性を取得している。
+
+``` python
+someDataFrame[(someDataFrame['update_dt'] - someDataFrame['entry_dt']).dt.days  < 1 ]
+```
 
 参考： https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html
 
