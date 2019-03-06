@@ -21,3 +21,31 @@ someDataFrame[(someDataFrame['update_dt'] - someDataFrame['entry_dt']).dt.days  
 
 参考： https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.html
 
+# redshift (postgresql) で出力したファイルを read_csv して DataFrame に読み込むときのコネタ
+
+`psql < hoge.sql > fuga.txt` のようなやり方で取得したファイルを read_csv する場合、整形めいたことが必要なのでメモ
+
+```
+ nantoka_id | kantoka_id |      update_dt      
+------------+------------+---------------------
+     108985 | 01         | 2019-03-01 04:18:30
+     108007 | 01         | 2019-03-01 04:20:16
+     917711 | 09         | 2019-03-01 05:21:46
+    6907246 | 69         | 2019-03-01 05:30:00
+(4 行)
+```
+
+このファイルは以下のようにすれば普通に読める。
+
+```
+import pandas as pd
+
+# セパレータを　`|`  2行目をスキップ、　とりあえず全部文字列として読み込む。
+fuga = pd.read_csv('fuga.txt' , sep='|' , skiprows=[1] ,dtype=str )
+# 行数表示をしている最終行を削除
+fuga.drop(len(fuga)-1, inplace=True)
+# 全部のフィールドの左右の空白文字を除去
+fuga.applymap(lambda x : x.strip())
+# 全部のカラム名の左右の空白文字を除去
+fuga = fuga.rename(columns=lambda s: s.strip())
+```
