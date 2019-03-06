@@ -45,7 +45,7 @@ fuga = pd.read_csv('fuga.txt' , sep='|' , skiprows=[1] ,dtype=str )
 # 行数表示をしている最終行を削除
 fuga.drop(len(fuga)-1, inplace=True)
 # 全部のフィールドの左右の空白文字を除去
-fuga.applymap(lambda x : x.strip())
+fuga = fuga.applymap(lambda x : x.strip())
 # 全部のカラム名の左右の空白文字を除去
 fuga = fuga.rename(columns=lambda s: s.strip())
 ```
