@@ -49,3 +49,25 @@ fuga = fuga.applymap(lambda x : x.strip())
 # 全部のカラム名の左右の空白文字を除去
 fuga = fuga.rename(columns=lambda s: s.strip())
 ```
+
+
+# もともとのDataFrameに一定間隔でダミーの行を入れるサンプル
+
+列を直接挿入するようなAPIは無いらしい。
+サンプルコードは１行ずつ走査していて遅そうだから、100行ずつまとめて処理すると速いかもしれない。
+
+``` python
+df = pd.read_csv("/path/to/file.tsv" , sep='\t', header=None)
+
+dummy_record = pd.Series( [0,0,0,0,0,0,0,0,0,0,0]  ) # dummy record
+
+dest = pd.DataFrame(columns=dummy_record.index ,  dtype='float64')
+
+for index,item in df_sorted.iterrows():
+    dest = dest.append(item)
+    if(index % 500 == 0):
+        dest = dest.append(tmp_se,ignore_index=True)
+        print(index) ## for logging
+        
+dest.head()
+```
