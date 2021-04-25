@@ -25,3 +25,5 @@ https://aws.amazon.com/jp/blogs/news/new-amazon-emr-on-amazon-elastic-kubernetes
 
 https://www.intercom.com/blog/run-less-software/
 
+
+
