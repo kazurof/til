@@ -27,3 +27,25 @@ https://www.intercom.com/blog/run-less-software/
 
 
 
+
+# Container Insights
+
+
+
+https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/ContainerInsights.html
+
+
+# FireLens でのECSログ
+
+https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/using_firelens.html
+
+
+
+# AWS Systems Manager のサービス名履歴
+
+
+SSMってなんの略称かわからなかったが、歴史的経緯があるらしい。
+
+
+https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/what-is-systems-manager.html#service-naming-history
+
